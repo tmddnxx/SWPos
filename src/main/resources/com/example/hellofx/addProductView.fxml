@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Cursor?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ComboBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.FlowPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.shape.Circle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellofx.product.controller.AddProductController">
+   <children>
+      <SplitPane dividerPositions="0.6984924623115578" orientation="VERTICAL" prefHeight="400.0" prefWidth="591.0">
+        <items>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="330.0" prefWidth="607.0">
+               <children>
+                  <ScrollPane hbarPolicy="NEVER" maxHeight="500.0" minHeight="330.0" prefHeight="330.0" prefWidth="590.0" vbarPolicy="ALWAYS">
+                    <content>
+                      <AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="400.0" prefHeight="424.0" prefWidth="572.0">
+                           <children>
+                              <Label layoutX="37.0" layoutY="26.0" text="새 상품 등록">
+                                 <font>
+                                    <Font name="System Bold" size="21.0" />
+                                 </font>
+                              </Label>
+                              <Pane fx:id="thumbProduct" layoutX="26.0" layoutY="75.0" prefHeight="108.0" prefWidth="142.0" style="-fx-background-color: blue;">
+                                 <children>
+                                    <Label fx:id="thumbPName" alignment="CENTER" layoutX="15.0" layoutY="21.0" prefHeight="25.0" prefWidth="113.0" text="상품이름" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                    <Label fx:id="thumbPPrice" alignment="CENTER" layoutX="15.0" layoutY="69.0" prefHeight="25.0" prefWidth="113.0" text="상품가격" textAlignment="CENTER" textFill="WHITE" wrapText="true">
+                                       <font>
+                                          <Font name="System Bold" size="13.0" />
+                                       </font>
+                                    </Label>
+                                 </children></Pane>
+                              <Label layoutX="26.0" layoutY="272.0" text="상품이름" />
+                              <Label layoutX="26.0" layoutY="336.0" text="상품가격" />
+                              <TextField fx:id="productNameField" layoutX="26.0" layoutY="298.0" onKeyTyped="#textInput" prefHeight="30.0" prefWidth="395.0" />
+                              <TextField fx:id="productPriceField" layoutX="26.0" layoutY="365.0" onKeyTyped="#textInput" prefHeight="30.0" prefWidth="395.0" />
+                              <Label layoutX="26.0" layoutY="212.0" text="카테고리" />
+                              <ComboBox fx:id="categoryBox" editable="true" layoutX="26.0" layoutY="237.0" prefHeight="30.0" prefWidth="395.0" promptText="카테고리를 선택하세요" />
+                              <Button fx:id="addCategoryBtn" layoutX="357.0" layoutY="241.0" mnemonicParsing="false" onAction="#addCategory" style="-fx-background-color: inherit;" text="+">
+                                 <font>
+                                    <Font size="13.0" />
+                                 </font>
+                                 <cursor>
+                                    <Cursor fx:constant="HAND" />
+                                 </cursor>
+                              </Button>
+                              <FlowPane alignment="CENTER" hgap="10.0" layoutX="243.0" layoutY="68.0" prefHeight="98.0" prefWidth="179.0" vgap="10.0">
+                                 <children>
+                                    <Circle fill="RED" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="ORANGE" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="YELLOW" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="GREEN" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="BLUE" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="PURPLE" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                    <Circle fill="#ff597a" onMouseClicked="#selectColor" radius="16.0" stroke="BLACK" strokeType="INSIDE">
+                                       <cursor>
+                                          <Cursor fx:constant="HAND" />
+                                       </cursor>
+                                    </Circle>
+                                 </children>
+                                 <cursor>
+                                    <Cursor fx:constant="DEFAULT" />
+                                 </cursor>
+                              </FlowPane>
+                           </children>
+                           <padding>
+                              <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
+                           </padding>
+                        </AnchorPane>
+                    </content>
+                  </ScrollPane>
+               </children>
+            </AnchorPane>
+          <AnchorPane maxHeight="60.0" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="54.0" prefWidth="589.0">
+               <children>
+                  <Button fx:id="addProductBtn" layoutX="415.0" layoutY="10.0" mnemonicParsing="false" onAction="#insertProduct" prefHeight="40.0" prefWidth="147.0" style="-fx-background-color: skyblue;" text="등록" textFill="WHITE">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+                  <Button fx:id="cancelBtn" layoutX="295.0" layoutY="10.0" mnemonicParsing="false" onAction="#cancelBtn" prefHeight="40.0" prefWidth="88.0" style="-fx-background-color: #cecece;" text="취소">
+                     <cursor>
+                        <Cursor fx:constant="HAND" />
+                     </cursor></Button>
+               </children>
+            </AnchorPane>
+        </items>
+      </SplitPane>
+   </children>
+</AnchorPane>
