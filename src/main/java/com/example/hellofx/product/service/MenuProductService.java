@@ -11,9 +11,11 @@ import java.util.List;
 
 public interface MenuProductService {
 
-    void addCategory(Menu_CategoryDTO menuCategoryDTO);
+    int addCategory(Menu_CategoryDTO menuCategoryDTO); // 카테고리 추가
 
-    List<Menu_CategoryDTO> categoryList();
+    List<Menu_CategoryDTO> categoryList(); // 카테고리 목록
 
-    void addProduct(Menu_ProductDTO menuProductDTO);
+    void addProduct(Menu_ProductDTO menuProductDTO); // 상품 등록
+    
+    List<Menu_ProductDTO> productList(String category); // 상품 목록
 }

@@ -1,16 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.VBox?>
-
 <?import javafx.scene.control.Button?>
-<VBox alignment="CENTER" spacing="20.0" xmlns:fx="http://javafx.com/fxml"
-      fx:controller="com.example.hellofx.HelloController">
-    <padding>
-        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0"/>
-    </padding>
 
-    <Label fx:id="welcomeText"/>
-    <Button text="Hello!" onAction="#onHelloButtonClick"/>
-</VBox>
+<BorderPane prefHeight="1000.0" prefWidth="700.0" style="-fx-background-color: #cecece;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellofx.login.controller.HelloController">
+   <center>
+      <Pane maxHeight="300.0" maxWidth="400.0" minHeight="300.0" minWidth="400.0" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black;">
+         <children>
+            <TextField fx:id="idInput" layoutX="94.0" layoutY="121.0" promptText="아이디" />
+            <PasswordField fx:id="pwInput" layoutX="94.0" layoutY="169.0" promptText="비밀번호" />
+            <Button fx:id="loginBtn" layoutX="147.0" layoutY="215.0" mnemonicParsing="false" onAction="#loginBtnClick" text="로그인">
+               <cursor>
+                  <Cursor fx:constant="HAND" />
+               </cursor>
+            </Button>
+         </children>
+      </Pane>
+   </center>
+</BorderPane>

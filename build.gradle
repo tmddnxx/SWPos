@@ -1,57 +1,95 @@
 plugins {
+    // Java 플러그인 적용
     id 'java'
+    // 애플리케이션 플러그인 적용
     id 'application'
+    // Java 모듈 시스템 플러그인 적용 (버전 1.8.12)
     id 'org.javamodularity.moduleplugin' version '1.8.12'
+    // JavaFX 플러그인 적용 (버전 0.0.13)
     id 'org.openjfx.javafxplugin' version '0.0.13'
+    // jlink 플러그인 적용 (버전 2.25.0)
     id 'org.beryx.jlink' version '2.25.0'
 }
 
-group 'com.example'
-version '1.0-SNAPSHOT'
+group 'com.example' // 프로젝트 그룹 설정
+version '1.0' // 프로젝트 버전 설정
 
 repositories {
-    mavenCentral()
+    mavenCentral() // Maven Central 리포지토리 사용
 }
 
 ext {
-    junitVersion = '5.10.0'
+    junitVersion = '5.10.0' // JUnit 버전 설정
 }
 
-sourceCompatibility = '17'
-targetCompatibility = '17'
+sourceCompatibility = '17' // 소스 코드의 호환성 버전 설정
+targetCompatibility = '17' // 타겟 JVM 버전 설정
 
 tasks.withType(JavaCompile) {
-    options.encoding = 'UTF-8'
+    options.encoding = 'UTF-8' // 소스 코드 인코딩 설정
 }
 
 application {
-    mainModule = 'com.example.hellofx'
-    mainClass = 'com.example.hellofx.HelloApplication'
+    mainModule = 'com.example.helloFX' // 메인 모듈 설정
+    mainClass = 'com.example.hellofx.HelloApplication' // 메인 클래스 설정
 }
 
 javafx {
-    version = '17.0.6'
-    modules = ['javafx.controls', 'javafx.fxml']
+    version = '17.0.6' // JavaFX 버전 설정
+    modules = ['javafx.controls', 'javafx.fxml'] // 사용되는 JavaFX 모듈 설정
 }
 
 dependencies {
+    // 컴파일 타임에만 lombok을 사용
+    compileOnly 'org.projectlombok:lombok:1.18.20'
+    // 어노테이션 프로세서로 lombok을 사용
+    annotationProcessor 'org.projectlombok:lombok:1.18.20'
 
+    // H2 데이터베이스 의존성 추가
+    implementation 'com.h2database:h2:2.1.214'
+
+    // JPA 의존성 추가
+    implementation 'javax.persistence:javax.persistence-api:2.2'
+    // Hibernate 코어 의존성 추가
+    implementation 'org.hibernate:hibernate-core:5.5.7.Final'
+
+    // JUnit 5 의존성 추가 (테스트용)
     testImplementation("org.junit.jupiter:junit-jupiter-api:${junitVersion}")
     testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:${junitVersion}")
 }
 
 test {
-    useJUnitPlatform()
+    useJUnitPlatform() // JUnit Platform 사용 설정
 }
 
 jlink {
+    // 생성된 이미지의 압축 파일 경로 설정
     imageZip = project.file("${buildDir}/distributions/app-${javafx.platform.classifier}.zip")
+    // jlink 옵션 설정
     options = ['--strip-debug', '--compress', '2', '--no-header-files', '--no-man-pages']
     launcher {
-        name = 'app'
+        name = 'app' // 생성된 런처의 이름 설정
     }
 }
 
 jlinkZip {
-    group = 'distribution'
+    group = 'distribution' // 작업 그룹 설정
+}
+
+task createJPackageImage(type: Exec) {
+    dependsOn 'jlink' // 'jlink' 작업 이후 실행되도록 설정
+    commandLine 'jpackage', '--name', 'myApp', '--app-version', '1.0.0', '--input', "${buildDir}/image/jlink", '--main-class', 'com.example.hellofx.HelloApplication'
+    // jpackage 명령어를 사용하여 애플리케이션 이미지 생성
+}
+
+// -- Deprecated feature warning mode --
+allprojects {
+    tasks.withType(AbstractCompile) {
+        // 컴파일러 경고 모드 설정 (Deprecated 기능 경고)
+        options.compilerArgs << "-Xlint:removal"
+    }
+    tasks.withType(Javadoc) {
+        // Javadoc 생성시 경고 억제 옵션 설정
+        options.addStringOption('Xdoclint:none', '-quiet')
+    }
 }

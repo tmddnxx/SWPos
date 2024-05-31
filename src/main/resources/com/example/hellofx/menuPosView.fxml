@@ -1,22 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.text.*?>
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellofx.product.controller.MenuPosViewController">
+<AnchorPane prefHeight="1000.0" prefWidth="700.0" xmlns="http://javafx.com/javafx/21" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hellofx.product.controller.MenuPosViewController">
    <children>
-      <SplitPane dividerPositions="0.7190635451505016" layoutY="-2.0" prefHeight="408.0" prefWidth="600.0">
+      <SplitPane dividerPositions="0.7190635451505016" layoutY="-2.0" prefHeight="1000.0" prefWidth="700.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <items>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0" prefWidth="400.0">
+          <AnchorPane minHeight="0.0" minWidth="0.0">
                <children>
-                  <SplitPane dividerPositions="0.6970443349753694" orientation="VERTICAL" prefHeight="408.0" prefWidth="426.0">
+                  <SplitPane dividerPositions="0.6970443349753694" orientation="VERTICAL" prefHeight="998.4" prefWidth="499.2" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                     <items>
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
-                      <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                        <TabPane fx:id="categoryTab" prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE" />
+                      <AnchorPane minHeight="0.0" minWidth="0.0">
                            <children>
                               <Button fx:id="addProductBtn" mnemonicParsing="false" onAction="#openAddProduct" text="상품추가" />
                            </children>
@@ -25,7 +23,7 @@
                   </SplitPane>
                </children>
             </AnchorPane>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="406.0" prefWidth="271.0" />
+          <AnchorPane minHeight="0.0" minWidth="0.0" />
         </items>
       </SplitPane>
    </children>

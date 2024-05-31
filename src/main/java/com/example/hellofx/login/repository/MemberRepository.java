@@ -55,7 +55,7 @@ public class MemberRepository {
 
     public Long login(String id, String pw){
         try{
-            Query query = entityManager.createQuery("select count(no) from Member where id = :id and pw = :pw");
+            Query query = entityManager.createQuery("select count(mno) from Member where id = :id and pw = :pw");
             query.setParameter("id", id);
             query.setParameter("pw", pw);
 
@@ -66,4 +66,5 @@ public class MemberRepository {
             return null;
         }
     }
+
 }

@@ -19,11 +19,11 @@ public class MenuProductServiceImpl implements MenuProductService {
     }
 
     @Override
-    public void addCategory(Menu_CategoryDTO menuCategoryDTO) { // 카테고리추가
+    public int addCategory(Menu_CategoryDTO menuCategoryDTO) { // 카테고리추가
 
         Menu_Category menuCategory = menuCategoryDTO.toEntity();
 
-        menuProductRepository.addCategory(menuCategory);
+        return menuProductRepository.addCategory(menuCategory);
     }
 
     @Override
@@ -48,6 +48,26 @@ public class MenuProductServiceImpl implements MenuProductService {
         Menu_Product menuProduct = menuProductDTO.toEntity();
 
         menuProductRepository.addProduct(menuProduct);
+    }
+
+    @Override
+    public List<Menu_ProductDTO> productList(String category) {
+
+        List<Menu_Product> productList = menuProductRepository.productList(category);
+
+        List<Menu_ProductDTO> productDTOList = productList.stream()
+                .map(product -> {
+                Menu_ProductDTO menuProductDTO = product.toDTO();
+
+                menuProductDTO.setPno(product.getPno());
+                menuProductDTO.setProductName(product.getProductName());
+                menuProductDTO.setProductPrice(product.getProductPrice());
+                menuProductDTO.setCategory(product.getCategory());
+                menuProductDTO.setColor(product.getColor());
+                    return menuProductDTO;
+                }).toList();
+
+        return productDTOList;
     }
 
 }

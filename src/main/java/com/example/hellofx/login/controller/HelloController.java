@@ -1,6 +1,9 @@
-package com.example.hellofx.controller;
+package com.example.hellofx.login.controller;
 
-import com.example.hellofx.repository.MemberRepository;
+import com.example.hellofx.login.dto.MemberDTO;
+import com.example.hellofx.login.repository.MemberRepository;
+import com.example.hellofx.login.service.MemberService;
+import com.example.hellofx.login.service.MemberServiceImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -27,28 +30,40 @@ public class HelloController {
     @FXML
     private Button loginBtn;
 
+    private final MemberService memberService;
+
+    public HelloController(){ // 기본생성자 초기화
+        this(new MemberServiceImpl(new MemberRepository()));
+    }
+
+    public HelloController(MemberService memberService) { // service 의존성주입
+        this.memberService = memberService;
+    }
+
     @FXML
     public void loginBtnClick(ActionEvent actionEvent) {
         String id = idInput.getText();
         String pw = pwInput.getText();
+        MemberDTO memberDTO = new MemberDTO();
+        memberDTO.setId(id);
+        memberDTO.setPw(pw);
 
-        MemberRepository memberRepository = new MemberRepository();
-        Long value = memberRepository.login(id, pw);
+        Long value = memberService.login(memberDTO);
         if (value == 1){
-            successLogin(id, pw);
+            successLogin();
         }else{
             System.out.println("로그인 실패");
         }
     }
 
-    public void successLogin(String id, String pw){
+    public void successLogin(){
 
         try {
             // mainHome.fxml 파일을 로드하여 해당하는 Parent 객체를 생성합니다.
             Parent sub = FXMLLoader.load(getClass().getResource("/com/example/hellofx/mainHome.fxml"));
 
             // 새로운 Scene 객체를 생성하고, 로드한 Parent 객체를 이용하여 화면을 구성합니다.
-            Scene scene = new Scene(sub, 1000, 500);
+            Scene scene = new Scene(sub, 1000, 700);
 
             // 새로운 Stage 객체를 생성하여 새 창을 엽니다.
             Stage stage = new Stage();
@@ -62,11 +77,11 @@ public class HelloController {
 
 
         }catch (IOException e){
+            e.printStackTrace();
             // IOException이 발생할 경우 예외 처리를 수행합니다.
             // 이 부분은 파일 로드에 실패했을 때 실행됩니다.
             // 예외가 발생한 경우에는 새 창을 열지 않고 기존 창을 닫지 않습니다.
         }
-
     }
 
     public void menuPosClick(ActionEvent actionEvent) {
@@ -76,7 +91,7 @@ public class HelloController {
             Parent sub = FXMLLoader.load(getClass().getResource("/com/example/hellofx/menuPosView.fxml"));
 
             // 새로운 Scene 객체를 생성하고, 로드한 Parent 객체를 이용하여 화면을 구성합니다.
-            Scene scene = new Scene(sub, 1000, 500);
+            Scene scene = new Scene(sub, 1000, 700);
 
             // 새로운 Stage 객체를 생성하여 새 창을 엽니다.
             Stage stage = new Stage();
